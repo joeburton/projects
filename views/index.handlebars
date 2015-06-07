@@ -1,0 +1,88 @@
+    <!-- Modal Start -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add a project</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="project">Project</label>
+                            <input type="text" class="form-control" id="project" placeholder="Enter project name">
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" class="form-control" id="company" placeholder="Enter company name">
+                        </div>
+                        <div class="form-group">
+                            <label for="skills">Skills used</label>
+                            <input type="password" class="form-control" id="skills" placeholder="Enter skills used">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Project description</label>
+                            <textarea type="text" class="form-control" id="description" placeholder="Enter project description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Save Project</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal end -->
+        
+
+    {{>nav}}
+
+    
+    <div class="intro">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Project Directory</h1>
+                    <p>Backbone, Node and MongoDB CRUD Application</p>
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Add a new project</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Responsive search form</h2>
+                <h3>lastminute.com</h3>
+                <p>Skills used: [JavaScript, Backbone, Jasmine, Require]</p>
+                <p>Details: Whilst working for lastminute.com I worked on two specific projects. For the first project I created an HTML5, LESS/ CSS3 & JavaScript mobile-first responsive search form component that used the Bootstrap framework for the underlying grid and basic styling. The search form component is now integrated into the company’s CMS and is being used across all the main marketing pages. The second project I worked on was the m.lastminute.com site delivering new features to the mobile site. We worked in a TDD fashion using BackboneJS and RequireJS with Jasmine and SinonJS for unit testing. For each project I worked in an agile team regularly being involved in estimations and sprint planning. I also enjoyed pairing on tasks with junior and other senior team members. Search form component > <a href="http://joe-burton.com/lastminute/search-form/index.php" target="_blank">http://joe-burton.com/lastminute/search-form/index.php</a></p>
+                <p><a class="btn btn-default" href="#" role="button">Edit Project</a></p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>m.lastminute.com</h2>
+                <h3>lastminute.com</h3>
+                <p>Skills used: [JavaScript, Backbone, Jasmine, Require]</p>
+                <p>Details: Whilst working for lastminute.com I worked on two specific projects. For the first project I created an HTML5, LESS/ CSS3 & JavaScript mobile-first responsive search form component that used the Bootstrap framework for the underlying grid and basic styling. The search form component is now integrated into the company’s CMS and is being used across all the main marketing pages. The second project I worked on was the m.lastminute.com site delivering new features to the mobile site. We worked in a TDD fashion using BackboneJS and RequireJS with Jasmine and SinonJS for unit testing. For each project I worked in an agile team regularly being involved in estimations and sprint planning. I also enjoyed pairing on tasks with junior and other senior team members. Search form component > <a href="http://joe-burton.com/lastminute/search-form/index.php" target="_blank">http://joe-burton.com/lastminute/search-form/index.php</a></p>
+                <p><a class="btn btn-default" href="#" role="button">Edit Project</a></p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Closer Magazine</h2>
+                <h3>Bauer Media</h3>
+                <p>Skills used: [JavaScript, Backbone, Jasmine, Require]</p>
+                <p>Details: I was employed by Bauer Media to work across two teams, the UI Team and the Back end CMS Team. In the UI team I contributed towards the development of the responsive front-end build of the new Closer Magazine online edition creating responsive HTML/CSS page templates and writing any JavaScript functionality where necessary. In the Back end Team I was responsible for developing JavaScript/ BackboneJS functionality that managed the adding, editing and deleting of articles and their supporting image and video assets. Closer Online > <a href="http://www.closeronline.co.uk" target="_blank">www.closeronline.co.uk</p>
+                <p><a class="btn btn-default" href="#" role="button">Edit Project</a></p>
+            </div>
+        </div>
+        <hr>
+        <footer>
+            <p>&copy; Joe Burton - 2015</p>
+        </footer>
+    </div>

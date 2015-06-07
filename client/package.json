@@ -1,0 +1,9 @@
+{
+"name": "node-app",
+"version": "1.0.0",
+    "dependencies": {
+        "grunt": "0.4.5",
+        "grunt-cli": "0.1.9",
+        "grunt-bowercopy": "1.1.0"
+    }
+}

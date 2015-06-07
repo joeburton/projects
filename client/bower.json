@@ -1,0 +1,14 @@
+{
+    "name": "node-app",
+    "version": "1.0.0",
+    "moduleType": [
+       "amd"
+    ],
+    "private": true,
+    "dependencies": {
+        "jquery": "2.1.1",
+        "bootstrap": "~3.3.4",
+        "underscore": "1.8.3",
+        "backbone": "1.2.1"
+    }
+}
