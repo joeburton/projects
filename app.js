@@ -29,7 +29,20 @@ app.use('/', routes);
 app.use('/about', routes);
 
 // get all projects
-// app.get('/projects', api.findAll);
+app.get('/projects', api.findAll);
+
+// get project by id
+app.get('/projects/:id', api.findById);
+
+// add project
+app.get('/addproject', api.addProject);
+
+
+//@TODO
+//app.post('/addproject', api.addProject);
+//app.put('/project/:id', api.updateProject);
+//app.delete('/project/:id', api.updateProject);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,19 +1,100 @@
-var mongo = require('mongodb');
+var MongoClient = require('mongodb').MongoClient;
+var ObjectId = require('mongodb').ObjectID;
 
-var Server = mongo.Server,
-    Db = mongo.Db,
-    BSON = mongo.BSONPure;
+// Connection URL 
+var url = 'mongodb://localhost:27017/projectsdb';
 
-var dev = true;
-var production = false;
+// db object
+var dbObj;
 
-if (dev) { // dev
-    var server = new Server('localhost', 27017, {auto_reconnect: true});
-    db = new Db('projectsdb', server, {safe: true});
-} else if (production) { // production
-    var server = new Server('localhost', 27017, {auto_reconnect: true});
-    db = new Db('node-app-production', server, {safe: true});
+// Use connect method to connect to the Server 
+MongoClient.connect(url, function(err, db) {
+    console.log("Connected correctly to server");
+    dbObj = db;
+});
+
+
+// get all projects in the collection
+exports.findAll = function(req, res) {
+    
+    var collection = dbObj.collection('projects');
+
+    collection.find({}).toArray(function(err, docs) {
+        console.log("Found the following records");
+        console.dir(docs);
+        res.send(docs);
+    });
+
+};
+
+
+// get projects by id
+exports.findById = function(req, res) {
+    
+    var id = req.params.id;
+
+    console.log('Retrieving project: ' + id);
+
+    dbObj.collection('projects', function(err, collection) {
+        collection.findOne({'_id':new ObjectId(id)}, function(err, item) {
+            res.send(item);
+        });
+    });
+
+};
+
+
+// add a new project
+exports.addProject = function(req, res) {
+    
+    // use with post @TODO
+    // var project = req.body;
+    
+    // temp data
+    var project = {
+        'project': 'http://fabulousmag.co.uk',
+        'company': 'Jam @ Engine',
+        'skills': 'Backbone, JavaScript, Jasmine, Require',
+        'description': 'I worked for Jam @ The Engine Group in Soho as a Mobile Front-end Developer building HTML5, CSS3, JavaScript/jQuery smart-phone and desktop websites. This contract was a great opportunity to develop my Mobile development skills working on the mobile version of the fabulous magazine http://fabulousmag.co.uk and several small Sky mobile promotional sites.'
+    };
+
+    console.log('Adding Project: ' + JSON.stringify(project));
+    
+    dbObj.collection('projects', function(err, collection) {
+        collection.insert(project, {safe:true}, function(err, result) {
+            if (err) {
+                res.send({'Error': 'an error has occurred'});
+            } else {
+                console.log('Success: ' + result);
+                res.send(result);
+            }
+        });
+    });
+
 }
+
+
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+
+// var mongo = require('mongodb');
+
+// var Server = mongo.Server,
+//     Db = mongo.Db,
+//     BSON = mongo.BSONPure;
+
+// var dev = true;
+// var production = false;
+
+// if (dev) { // dev
+//     var server = new Server('localhost', 27017, {auto_reconnect: true});
+//     db = new Db('projectsdb', server, {safe: true});
+// } else if (production) { // production
+//     var server = new Server('localhost', 27017, {auto_reconnect: true});
+//     db = new Db('node-app-production', server, {safe: true});
+// }
 
 
 /*
@@ -25,33 +106,33 @@ MONGODB_USERNAME: node-app
 */
 
 
-db.open(function(err, db) {
-    if(!err) {
+// db.open(function(err, db) {
+//     if(!err) {
 
-        if (dev) {
-            console.log("Connected to 'projectsdb' production database");
-        } else if (production) {
-            console.log("Connected to 'node-app-production' local database");
-        }       
+//         if (dev) {
+//             console.log("Connected to 'projectsdb' production database");
+//         } else if (production) {
+//             console.log("Connected to 'node-app-production' local database");
+//         }       
         
-        db.collection('projects', {safe:true}, function(err, collection) {
-            if (err) {
-                console.log("The 'projects' collection doesn't exist. Creating it with sample data...");
-                populateDB();
-            }
-        });
+//         db.collection('projects', {safe:true}, function(err, collection) {
+//             if (err) {
+//                 console.log("The 'projects' collection doesn't exist. Creating it with sample data...");
+//                 populateDB();
+//             }
+//         });
 
-    }
-});
+//     }
+// });
 
 
-exports.findAll = function(req, res) {
-    db.collection('projects', function(err, collection) {
-        collection.find().toArray(function(err, items) {
-            res.send(items);
-        });
-    });
-};
+// exports.findAll = function(req, res) {
+//     db.collection('projects', function(err, collection) {
+//         collection.find().toArray(function(err, items) {
+//             res.send(items);
+//         });
+//     });
+// };
 
 
 // exports.findById = function(req, res) {
