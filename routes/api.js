@@ -1,11 +1,16 @@
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
+var url;
+var dbObj;
+var production = true;
 
 // Connection URL 
-var url = 'mongodb://localhost:27017/projectsdb';
+if (production) {
+    url = 'mongodb://localhost:27017/projects-production';
+} else {
+    url = 'mongodb://localhost:27017/projectsdb';
+}
 
-// db object
-var dbObj;
 
 // Use connect method to connect to the Server 
 MongoClient.connect(url, function(err, db) {
@@ -63,6 +68,7 @@ exports.addProject = function(req, res) {
     dbObj.collection('projects', function(err, collection) {
         collection.insert(project, {safe:true}, function(err, result) {
             if (err) {
+                //populateDB();
                 res.send({'Error': 'an error has occurred'});
             } else {
                 console.log('Success: ' + result);
