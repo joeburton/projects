@@ -37,6 +37,9 @@ app.get('/projects/:id', api.findById);
 // add project
 app.get('/addproject', api.addProject);
 
+// populate database
+app.get('/populate-database', api.populateDatabase);
+
 
 //@TODO
 //app.post('/addproject', api.addProject);

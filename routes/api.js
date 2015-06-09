@@ -82,6 +82,12 @@ exports.addProject = function(req, res) {
 }
 
 
+// populate database
+exports.populateDatabase = function () {
+    populateDB();
+}
+
+
 /////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
@@ -227,7 +233,7 @@ var populateDB = function() {
         description: " I was employed by Bauer Media to work across two teams, the UI Team and the Back end CMS Team. In the UI team I contributed towards the development of the responsive front-end build of the new Closer Magazine online edition creating responsive HTML/CSS page templates and writing any JavaScript functionality where necessary"
     }];
 
-    db.collection('projects', function(err, collection) {
+    dbObj.collection('projects', function(err, collection) {
         collection.insert(projects, {safe:true}, function(err, result) {});
     });
 
