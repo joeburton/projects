@@ -25,14 +25,13 @@ dokku mongodb:delete projects projects
 #Config
 dokku config projects
 
-MONGODB_DATABASE: projects-production$
-MONGODB_HOST:     172.17.0.17$
-MONGODB_PORT:     27017$
-MONGODB_USERNAME: projects$
-MONGODB_PASSWORD: a3pWM2JQZ3UrR1lDQ0N0TG1aVXFJK2FWcml3cGt1c1FsK08xbHpJUkNsOD0K$
-MONGO_URL:        mongodb://projects:a3pWM2JQZ3UrR1lDQ0N0TG1aVXFJK2FWcml3cGt1c1FsK08xbHpJUkNsOD0K@172.17.0.17:27017/projects-production$
+MONGODB_DATABASE: projects-production
+MONGODB_HOST:     172.17.0.17
+MONGODB_PASSWORD: a3pWM2JQZ3UrR1lDQ0N0TG1aVXFJK2FWcml3cGt1c1FsK08xbHpJUkNsOD0K
+MONGODB_PORT:     27017
+MONGODB_USERNAME: projects
 MONGO_URI:        mongodb://projects:a3pWM2JQZ3UrR1lDQ0N0TG1aVXFJK2FWcml3cGt1c1FsK08xbHpJUkNsOD0K@172.17.0.17:27017/projects-production
-
+MONGO_URL:        mongodb://projects:a3pWM2JQZ3UrR1lDQ0N0TG1aVXFJK2FWcml3cGt1c1FsK08xbHpJUkNsOD0K@172.17.0.17:27017/projects-production
 
 Query stuff: 
 $ dokku mongodb:console

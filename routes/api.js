@@ -1,12 +1,14 @@
+
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
+var production = true;
 var url;
 var dbObj;
-var production = true;
+
 
 // Connection URL 
 if (production) {
-    url = 'mongodb://localhost:27017/projects-production';
+    url = 'mongodb://projects:@172.17.0.17:27017/projects-production';
 } else {
     url = 'mongodb://localhost:27017/projectsdb';
 }
