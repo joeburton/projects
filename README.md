@@ -16,10 +16,12 @@ dokku plugins-install
 #Start MongoDD
 dokku mongodb:start
 
-#Create a database and associate it with app dokku mongodb:delete <database> <project>
+#Create a database and associate it with app: dokku mongodb:create <database> <project>
 dokku mongodb:create projects projects
 
-#Remove database
+#Link database to app - mongodb:link <app> <database>
+
+#Remove database - app dokku mongodb:delete <database> <project>
 dokku mongodb:delete projects projects
 
 #Config

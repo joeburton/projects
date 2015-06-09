@@ -1,4 +1,5 @@
 
+// Mongo objects
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 var production = true;
@@ -70,7 +71,6 @@ exports.addProject = function(req, res) {
     dbObj.collection('projects', function(err, collection) {
         collection.insert(project, {safe:true}, function(err, result) {
             if (err) {
-                //populateDB();
                 res.send({'Error': 'an error has occurred'});
             } else {
                 console.log('Success: ' + result);
@@ -83,81 +83,14 @@ exports.addProject = function(req, res) {
 
 
 // populate database
-exports.populateDatabase = function () {
-    populateDB();
+exports.populateDatabase = function (req, res) {
+    populateDB(req, res);
 }
 
 
 /////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////
 
-// var mongo = require('mongodb');
-
-// var Server = mongo.Server,
-//     Db = mongo.Db,
-//     BSON = mongo.BSONPure;
-
-// var dev = true;
-// var production = false;
-
-// if (dev) { // dev
-//     var server = new Server('localhost', 27017, {auto_reconnect: true});
-//     db = new Db('projectsdb', server, {safe: true});
-// } else if (production) { // production
-//     var server = new Server('localhost', 27017, {auto_reconnect: true});
-//     db = new Db('node-app-production', server, {safe: true});
-// }
-
-
-/*
-MONGODB_DATABASE: node-app-production
-MONGODB_HOST:     172.17.0.21
-MONGODB_PASSWORD: WHA0TGJnd3ZHWHFDcTRqWmJuL0xmb1BiazhZenFmTmM4a1hySHFvSnRrcz0K
-MONGODB_PORT:     27017
-MONGODB_USERNAME: node-app
-*/
-
-
-// db.open(function(err, db) {
-//     if(!err) {
-
-//         if (dev) {
-//             console.log("Connected to 'projectsdb' production database");
-//         } else if (production) {
-//             console.log("Connected to 'node-app-production' local database");
-//         }       
-        
-//         db.collection('projects', {safe:true}, function(err, collection) {
-//             if (err) {
-//                 console.log("The 'projects' collection doesn't exist. Creating it with sample data...");
-//                 populateDB();
-//             }
-//         });
-
-//     }
-// });
-
-
-// exports.findAll = function(req, res) {
-//     db.collection('projects', function(err, collection) {
-//         collection.find().toArray(function(err, items) {
-//             res.send(items);
-//         });
-//     });
-// };
-
-
-// exports.findById = function(req, res) {
-//     var id = req.params.id;
-//     console.log('Retrieving project: ' + id);
-//     db.collection('projects', function(err, collection) {
-//         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
-//             res.send(item);
-//         });
-//     });
-// };
 
 // exports.addWine = function(req, res) {
 //     var wine = req.body;
@@ -211,7 +144,7 @@ MONGODB_USERNAME: node-app
 /*--------------------------------------------------------------------------------------------------------------------*/
 // Populate database with sample data -- Only used once: the first time the application is started.
 // You'd typically not find this code in a real-life app, since the database would already exist.
-var populateDB = function() {
+var populateDB = function(req, res) {
 
     var projects = [
     {
@@ -234,7 +167,9 @@ var populateDB = function() {
     }];
 
     dbObj.collection('projects', function(err, collection) {
-        collection.insert(projects, {safe:true}, function(err, result) {});
+        collection.insert(projects, {safe:true}, function(err, result) {
+            res.send(result);
+        });
     });
 
 };
