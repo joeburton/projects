@@ -8,7 +8,7 @@ var dbObj;
 
 // Connection URL 
 if (production) {
-    url = 'mongodb://projects:@172.17.0.17:27017/projects-production';
+    url = 'mongodb://projects:a3pWM2JQZ3UrR1lDQ0N0TG1aVXFJK2FWcml3cGt1c1FsK08xbHpJUkNsOD0K@172.17.0.17:27017/projects-production';
 } else {
     url = 'mongodb://localhost:27017/projectsdb';
 }
