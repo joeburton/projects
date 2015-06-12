@@ -35,15 +35,15 @@ app.get('/projects', api.findAll);
 app.get('/projects/:id', api.findById);
 
 // add project
-app.get('/addproject', api.addProject);
+app.post('/addproject', api.addProject);
 
 // populate database
 app.get('/populate-database', api.populateDatabase);
 
-
-//@TODO
-//app.post('/addproject', api.addProject);
+// update projects
 //app.put('/project/:id', api.updateProject);
+
+// delete project
 //app.delete('/project/:id', api.updateProject);
 
 

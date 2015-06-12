@@ -1,5 +1,12 @@
+#Projects Application
 
-#Install MongoDB
+#Setup Dokku
+git remote add dokku dokku@projects.joe-burton.com:projects
+git add .
+git commit -m "firtst commit"
+git push dokku master
+
+#Install MongoDB on Digital Ocean
 http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
 
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
@@ -24,7 +31,7 @@ dokku mongodb:create projects projects
 #Remove database - app dokku mongodb:delete <database> <project>
 dokku mongodb:delete projects projects
 
-#Config
+#Config - retrive environment variables
 dokku config projects
 
 MONGODB_DATABASE: projects-production
@@ -35,16 +42,21 @@ MONGODB_USERNAME: projects
 MONGO_URI:        mongodb://projects:a3pWM2JQZ3UrR1lDQ0N0TG1aVXFJK2FWcml3cGt1c1FsK08xbHpJUkNsOD0K@172.17.0.17:27017/projects-production
 MONGO_URL:        mongodb://projects:a3pWM2JQZ3UrR1lDQ0N0TG1aVXFJK2FWcml3cGt1c1FsK08xbHpJUkNsOD0K@172.17.0.17:27017/projects-production
 
-Query stuff: 
+
+MongoDB Query stuff: 
 $ dokku mongodb:console
 $ db.projects.find().pretty()
+
+
+#Start app locally
+cd ~/Sites/projects
+DEBUG=myapp npm start
 
 
 #References
 	- setup dokku, http://markrabey.com/2015/02/08/express-site-with-digital-ocean-and-dokku/ 
 	- mongodb setup, https://www.youtube.com/watch?v=xpD9AOcWlgc
 	- http://pythonhackers.com/p/jeffutter/dokku-mongodb-plugin
-
-https://github.com/jeffutter/dokku-mongodb-plugin
-http://stackoverflow.com/questions/24853848/deploying-node-js-app-with-mongodb-with-dokku-on-digital-ocean
-https://www.andrewmunsell.com/blog/dokku-tutorial-digital-ocean
+	- https://github.com/jeffutter/dokku-mongodb-plugin
+	- http://stackoverflow.com/questions/24853848/deploying-node-js-app-with-mongodb-with-dokku-on-digital-ocean
+	- https://www.andrewmunsell.com/blog/dokku-tutorial-digital-ocean

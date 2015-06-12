@@ -9,8 +9,10 @@ var dbObj;
 
 // Connection URL 
 if (production) {
+    // production
     url = 'mongodb://projects:a3pWM2JQZ3UrR1lDQ0N0TG1aVXFJK2FWcml3cGt1c1FsK08xbHpJUkNsOD0K@172.17.0.17:27017/projects-production';
 } else {
+    // local dev
     url = 'mongodb://localhost:27017/projectsdb';
 }
 
@@ -55,16 +57,7 @@ exports.findById = function(req, res) {
 // add a new project
 exports.addProject = function(req, res) {
     
-    // use with post @TODO
-    // var project = req.body;
-    
-    // temp data
-    var project = {
-        'project': 'http://fabulousmag.co.uk',
-        'company': 'Jam @ Engine',
-        'skills': 'Backbone, JavaScript, Jasmine, Require',
-        'description': 'I worked for Jam @ The Engine Group in Soho as a Mobile Front-end Developer building HTML5, CSS3, JavaScript/jQuery smart-phone and desktop websites. This contract was a great opportunity to develop my Mobile development skills working on the mobile version of the fabulous magazine http://fabulousmag.co.uk and several small Sky mobile promotional sites.'
-    };
+    var project = req.body;
 
     console.log('Adding Project: ' + JSON.stringify(project));
     
@@ -84,11 +77,34 @@ exports.addProject = function(req, res) {
 
 // populate database
 exports.populateDatabase = function (req, res) {
-    populateDB(req, res);
+    var projects = [
+    {
+        project: "m.lastminute.com",
+        company: "lastminute.com",
+        skills: "Backbone, JavaScript, Jasmine, Require",
+        description: "Whilst working for lastminute.com I worked on two specific projects. For the first project I created an HTML5, LESS/ CSS3 & JavaScript mobile-first responsive search form component that used the Bootstrap framework for the underlying grid and basic styling."
+    },
+    {
+        project: "Blue Square",
+        company: "Rank Interactive",
+        skills: "Backbone, JavaScript, Jasmine, Require",
+        description: "I was responsible for managing a team of Front-end Developers in the responsive rebuild of bluesq.com. This involved creating an HTML5, LESS/ CSS and JavaScript framework that worked across mobile, tablet and desktop. I was also responsible on a day-to-day basis for managing the production of HTML prototypes to demonstrate different ideas from the UX Team."
+    },
+    {
+        project: "Closer Magazine",
+        company: "Bauer Media",
+        skills: "JavaScript, Backbone, Jasmine, Require",
+        description: " I was employed by Bauer Media to work across two teams, the UI Team and the Back end CMS Team. In the UI team I contributed towards the development of the responsive front-end build of the new Closer Magazine online edition creating responsive HTML/CSS page templates and writing any JavaScript functionality where necessary"
+    }];
+
+    dbObj.collection('projects', function(err, collection) {
+        collection.insert(projects, {safe:true}, function(err, result) {
+            res.send(result);
+        });
+    });
 }
 
 
-/////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
 
 
@@ -140,36 +156,3 @@ exports.populateDatabase = function (req, res) {
 //         });
 //     });
 // }
-
-/*--------------------------------------------------------------------------------------------------------------------*/
-// Populate database with sample data -- Only used once: the first time the application is started.
-// You'd typically not find this code in a real-life app, since the database would already exist.
-var populateDB = function(req, res) {
-
-    var projects = [
-    {
-        project: "m.lastminute.com",
-        company: "lastminute.com",
-        skills: "Backbone, JavaScript, Jasmine, Require",
-        description: "Whilst working for lastminute.com I worked on two specific projects. For the first project I created an HTML5, LESS/ CSS3 & JavaScript mobile-first responsive search form component that used the Bootstrap framework for the underlying grid and basic styling."
-    },
-    {
-        project: "Blue Square",
-        company: "Rank Interactive",
-        skills: "Backbone, JavaScript, Jasmine, Require",
-        description: "I was responsible for managing a team of Front-end Developers in the responsive rebuild of bluesq.com. This involved creating an HTML5, LESS/ CSS and JavaScript framework that worked across mobile, tablet and desktop. I was also responsible on a day-to-day basis for managing the production of HTML prototypes to demonstrate different ideas from the UX Team."
-    },
-    {
-        project: "Closer Magazine",
-        company: "Bauer Media",
-        skills: "JavaScript, Backbone, Jasmine, Require",
-        description: " I was employed by Bauer Media to work across two teams, the UI Team and the Back end CMS Team. In the UI team I contributed towards the development of the responsive front-end build of the new Closer Magazine online edition creating responsive HTML/CSS page templates and writing any JavaScript functionality where necessary"
-    }];
-
-    dbObj.collection('projects', function(err, collection) {
-        collection.insert(projects, {safe:true}, function(err, result) {
-            res.send(result);
-        });
-    });
-
-};
