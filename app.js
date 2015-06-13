@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
+var routes = require('./routes/routes');
 var api = require('./routes/api');
 
 var app = express();
@@ -27,24 +27,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/about', routes);
+app.use('/projects', routes);
+app.use('/projects/:id', routes);
 
-// get all projects
-app.get('/projects', api.findAll);
+app.get('/source', api.findAll); // get all projects
+app.get('/source/:id', api.findById); // get project by id
+app.post('/source', api.addProject); // add project
+app.put('/source/:id', api.updateProject); // update project
+app.delete('/source/:id', api.deleteProject); // delete project
 
-// get project by id
-app.get('/projects/:id', api.findById);
-
-// add project
-app.post('/addproject', api.addProject);
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
 
 // populate database
 app.get('/populate-database', api.populateDatabase);
-
-// update projects
-//app.put('/project/:id', api.updateProject);
-
-// delete project
-//app.delete('/project/:id', api.updateProject);
 
 
 // catch 404 and forward to error handler

@@ -51,7 +51,7 @@ module.exports = function(grunt) {
             }
         },
         watch:{
-            files: ['css/*.css', 'js/**'],
+            files: ['css/*.css', 'js/**', 'templates/**'],
             tasks: ['requirejs:dev', 'concat:css'],
             options: {
                 spawn: false

@@ -9,6 +9,10 @@ define([
 	var ProjectsView = Backbone.View.extend({
 
 		el: '#projects',
+		
+		initialize: function () {
+			
+		},
 
 		render: function () {
 

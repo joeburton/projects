@@ -3,19 +3,20 @@ define([
     'underscore', 
     'backbone',
     'bootstrap',
-    'text!templates/project.html'
-], function($, _, Backbone, bootstrap, projectTmpl) {
+    'text!templates/project.html',
+    'EditView'
+], function($, _, Backbone, bootstrap, projectTmpl, EditView) {
     
 	var ProjectView = Backbone.View.extend({
 
 		className: 'row',
 
 		events: {
-			'click .btn-default': 'open'
+			'click .edit-project': 'editView'
 		},
 
 		template: _.template(projectTmpl),
-
+		
 		render: function () {
 			
 			this.$el.html(this.template(this.model.toJSON()));
@@ -24,9 +25,9 @@ define([
 
 		},
 
-		open: function (e) {
-			console.log(e, this);
-		}
+	    editView: function () {
+	        app.navigate('projects/' + this.model.get('_id'), true);
+	    }
 
 	});
 

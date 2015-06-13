@@ -7,6 +7,10 @@ define([
     
 	var ProjectModel = Backbone.Model.extend({
 
+		urlRoot: "/source",
+
+		idAttribute: "_id"
+
 	});
 
 	return ProjectModel;
