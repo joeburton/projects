@@ -34,10 +34,10 @@ define([
 
             projectsCollection.fetch({
                 success: function (collection) {
-                    var projectsView = new ProjectsView({collection: collection}).render();
+                    $('#projects').html(new ProjectsView({collection: collection}).render().el);
                 },
                 error: function () {
-                    console.log('Sorry something went wrong: ');
+                    console.log('Sorry something went wrong');
                 }
             });
             

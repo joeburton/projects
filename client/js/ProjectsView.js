@@ -8,12 +8,6 @@ define([
     
 	var ProjectsView = Backbone.View.extend({
 
-		el: '#projects',
-		
-		initialize: function () {
-			
-		},
-
 		render: function () {
 
 		    this.collection.each(_.bind(function (model) {
