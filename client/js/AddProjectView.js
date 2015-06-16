@@ -12,11 +12,7 @@ define([
 
 		events: {
 			'click .save': 'saveProject',
-			'click .cancel': 'cancel'
-		},
-
-		initialize: function () {
-			console.log('add project init');
+			'click .close-modal': 'close'
 		},
 
 		saveProject: function () {
@@ -33,21 +29,27 @@ define([
 	    		'description': description,
 	    	});
 			
+			var that = this;
+
 	    	project.save(null, {
 	    		success: function (model, response, options) {
-	    			console.log('Project saved to MongoDB', model, response, options);
+	    			that.undelegateEvents();
+	    			console.log('Project saved to MongoDB');
 	    			$('#add-project').modal('hide');
 	                app.navigate('/', true);
 	    		}, 
 	    		error: function (model, response, options) {
-	    			console.log('Sorry something went wrong', model, response, options);
+	    			alert('Sorry something went wrong');
 	    		}
 	    	});
 
 		},
 
-		cancel: function () {
+		close: function () {
+
+			app.navigate('/', true);
 			console.log('cancel');
+			
 		}
 		
 	});

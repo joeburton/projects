@@ -15774,7 +15774,7 @@ define('EditView',[
 		events: {
 			'click .btn-danger.delete': 'deleteProject',
 			'click .btn-primary.save': 'updateProject',
-			'click .btn-default.cancel': 'close'
+			'click .close-modal': 'close'
 		},
 
 		initialize: function () {
@@ -15787,8 +15787,12 @@ define('EditView',[
 		},
 
 	    deleteProject: function () {
+
+	    	var that = this;
+
 	        this.model.destroy({
 	            success: function () {
+	                that.undelegateEvents();
 	                console.log('Project deleted successfully');
 	                $('#edit-project').modal('hide');
 	                app.navigate('/', true);
@@ -15797,7 +15801,7 @@ define('EditView',[
 	                alert('Sorry something went wrong.');
 	            }
 	        });
-	        return false;
+	        
 	    },
 
 	    updateProject: function () {
@@ -15806,7 +15810,8 @@ define('EditView',[
 	    	var company = this.$el.find('[data-company-name]').val();
 	    	var skills = this.$el.find('[data-skills]').val();
 	    	var description = this.$el.find('[data-description]').val();
-	    	
+	    	var that = this;
+
 	    	this.model.save({
 	    		'project': project,
 	    		'company': company,
@@ -15814,6 +15819,7 @@ define('EditView',[
 	    		'description': description
 	    		},{
 	    		success: function () {
+	    			that.undelegateEvents();
 					console.log('Project updated successfully');
 	                $('#edit-project').modal('hide');
 	                app.navigate('/', true);
@@ -15826,8 +15832,10 @@ define('EditView',[
 	    },
 
 	    close: function () {
+
 	    	app.navigate('/', true);  
 	    	console.log('close');
+
 	    }
 	    
 	});
@@ -15961,11 +15969,7 @@ define('AddProjectView',[
 
 		events: {
 			'click .save': 'saveProject',
-			'click .cancel': 'cancel'
-		},
-
-		initialize: function () {
-			console.log('add project init');
+			'click .close-modal': 'close'
 		},
 
 		saveProject: function () {
@@ -15982,21 +15986,27 @@ define('AddProjectView',[
 	    		'description': description,
 	    	});
 			
+			var that = this;
+
 	    	project.save(null, {
 	    		success: function (model, response, options) {
-	    			console.log('Project saved to MongoDB', model, response, options);
+	    			that.undelegateEvents();
+	    			console.log('Project saved to MongoDB');
 	    			$('#add-project').modal('hide');
 	                app.navigate('/', true);
 	    		}, 
 	    		error: function (model, response, options) {
-	    			console.log('Sorry something went wrong', model, response, options);
+	    			alert('Sorry something went wrong');
 	    		}
 	    	});
 
 		},
 
-		cancel: function () {
+		close: function () {
+
+			app.navigate('/', true);
 			console.log('cancel');
+			
 		}
 		
 	});
@@ -16020,8 +16030,12 @@ define('IntroView',[
 
 		el: '.intro',
 
-		initialize: function () {
-			var addProjectView = new AddProjectView();
+		events: {
+			'click .add-project': 'addProjects'
+		},
+
+		addProjects: function () {
+			app.navigate('/add', true);
 		}
 
 	});
@@ -16054,19 +16068,23 @@ define('main',[
     'ProjectsCollection',
     'EditView',
     'ProjectModel',
-    'IntroView'
-], function($, _, Backbone, bootstrap, ProjectsView, ProjectsCollection, EditView, ProjectModel, IntroView) {
+    'IntroView',
+    'AddProjectView'
+], function($, _, Backbone, bootstrap, ProjectsView, ProjectsCollection, EditView, ProjectModel, IntroView, AddProjectView) {
 
     var AppRouter = Backbone.Router.extend({
         
         routes: {
             "": "start",
             "projects": 'start',
+            "add": 'addProject',
             "projects/:id": 'projectDetails'
         },
 
         initialize: function() {
+
             var introView = new IntroView();
+
         },
 
         start: function () {
@@ -16095,6 +16113,18 @@ define('main',[
                     var editView = new EditView({model: model});
                 }
             });
+
+        },
+
+        addProject: function () {
+            
+            if (addProjectView) {
+                console.log('view already exists');   
+            }
+
+            var addProjectView = new AddProjectView();
+
+            $('#add-project').modal('show');
 
         }
 

@@ -10,8 +10,12 @@ define([
 
 		el: '.intro',
 
-		initialize: function () {
-			var addProjectView = new AddProjectView();
+		events: {
+			'click .add-project': 'addProjects'
+		},
+
+		addProjects: function () {
+			app.navigate('/add', true);
 		}
 
 	});

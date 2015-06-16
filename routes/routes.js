@@ -14,7 +14,11 @@ router.get('/projects/:id', function(req, res, next) {
 });
 
 router.get('/about', function(req, res, next) {
-  res.render('about', { title: 'About' });
+  res.render('about', { title: 'Project Directory - About' });
+});
+
+router.get('/add', function(req, res, next) {
+  res.render('index', { title: 'Project Directory - Add' });
 });
 
 module.exports = router;

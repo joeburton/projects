@@ -19,19 +19,23 @@ define([
     'ProjectsCollection',
     'EditView',
     'ProjectModel',
-    'IntroView'
-], function($, _, Backbone, bootstrap, ProjectsView, ProjectsCollection, EditView, ProjectModel, IntroView) {
+    'IntroView',
+    'AddProjectView'
+], function($, _, Backbone, bootstrap, ProjectsView, ProjectsCollection, EditView, ProjectModel, IntroView, AddProjectView) {
 
     var AppRouter = Backbone.Router.extend({
         
         routes: {
             "": "start",
             "projects": 'start',
+            "add": 'addProject',
             "projects/:id": 'projectDetails'
         },
 
         initialize: function() {
+
             var introView = new IntroView();
+
         },
 
         start: function () {
@@ -60,6 +64,18 @@ define([
                     var editView = new EditView({model: model});
                 }
             });
+
+        },
+
+        addProject: function () {
+            
+            if (addProjectView) {
+                console.log('view already exists');   
+            }
+
+            var addProjectView = new AddProjectView();
+
+            $('#add-project').modal('show');
 
         }
 
