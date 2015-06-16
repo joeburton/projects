@@ -2,7 +2,7 @@
 // Mongo objects
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
-var production = true;
+var production = true
 var url;
 var dbObj;
 
@@ -66,8 +66,8 @@ exports.addProject = function(req, res) {
             if (err) {
                 res.send({'Error': 'an error has occurred'});
             } else {
-                console.log('Success: ' + result[0]);
-                res.send(result[0]);
+                console.log('Success: ' + JSON.stringify(result));
+                res.send(JSON.stringify(result));
             }
         });
     });

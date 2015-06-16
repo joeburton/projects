@@ -18,14 +18,20 @@ define([
     'ProjectsView',
     'ProjectsCollection',
     'EditView',
-    'ProjectModel'
-], function($, _, Backbone, bootstrap, ProjectsView, ProjectsCollection, EditView, ProjectModel) {
+    'ProjectModel',
+    'IntroView'
+], function($, _, Backbone, bootstrap, ProjectsView, ProjectsCollection, EditView, ProjectModel, IntroView) {
 
     var AppRouter = Backbone.Router.extend({
+        
         routes: {
             "": "start",
             "projects": 'start',
             "projects/:id": 'projectDetails'
+        },
+
+        initialize: function() {
+            var introView = new IntroView();
         },
 
         start: function () {
