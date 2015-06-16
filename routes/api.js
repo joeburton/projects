@@ -2,7 +2,7 @@
 // Mongo objects
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
-var production = false
+var production = true;
 var url;
 var dbObj;
 
