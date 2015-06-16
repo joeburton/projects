@@ -15893,12 +15893,16 @@ define('ProjectsView',[
 
 		render: function () {
 
+			var container = document.createDocumentFragment();
+
 		    this.collection.each(_.bind(function (model) {
 		      
 		        var projectView = new ProjectView({model: model});
-		        this.$el.append(projectView.render().el);
-
+		        container.appendChild(projectView.render().el)
+		        
 		    }, this));
+
+		    this.$el.append(container);
 
 		    return this;
 
