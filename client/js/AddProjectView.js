@@ -11,8 +11,17 @@ define([
 		el: '#add-project',
 
 		events: {
-			'click .save': 'saveProject',
-			'click .close-modal': 'close'
+			'click .save': 'saveProject'
+		},
+
+		initialize: function () {
+
+			var that = this;
+			
+			$('#add-project').on('hidden.bs.modal', function () {
+				that.close();
+			});
+
 		},
 
 		saveProject: function () {
@@ -33,10 +42,8 @@ define([
 
 	    	project.save(null, {
 	    		success: function (model, response, options) {
-	    			that.undelegateEvents();
 	    			console.log('Project saved to MongoDB');
-	    			$('#add-project').modal('hide');
-	                app.navigate('/', true);
+	    			that.close();
 	    		}, 
 	    		error: function (model, response, options) {
 	    			alert('Sorry something went wrong');
@@ -47,9 +54,14 @@ define([
 
 		close: function () {
 
-			app.navigate('/', true);
-			console.log('cancel');
+			console.log('Close: Add project');
 			
+			this.undelegateEvents();
+			$('#add-project').modal('hide');
+			$('#add-project').off();
+
+			app.navigate('/', true);
+
 		}
 		
 	});
@@ -57,6 +69,3 @@ define([
 	return AddProjectView;
     
 });
-
-
-

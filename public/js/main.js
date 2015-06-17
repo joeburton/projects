@@ -15773,8 +15773,7 @@ define('EditView',[
 
 		events: {
 			'click .btn-danger.delete': 'deleteProject',
-			'click .btn-primary.save': 'updateProject',
-			'click .close-modal': 'close'
+			'click .btn-primary.save': 'updateProject'
 		},
 
 		initialize: function () {
@@ -15783,6 +15782,12 @@ define('EditView',[
 	    	this.$el.find('[data-company-name]').val(this.model.get('company'));
 	    	this.$el.find('[data-skills]').val(this.model.get('skills'));
 	    	this.$el.find('[data-description]').val(this.model.get('description'));
+			
+			var that = this;
+
+			$('#edit-project').on('hidden.bs.modal', function () {
+				that.close();
+			});
 
 		},
 
@@ -15792,10 +15797,8 @@ define('EditView',[
 
 	        this.model.destroy({
 	            success: function () {
-	                that.undelegateEvents();
 	                console.log('Project deleted successfully');
-	                $('#edit-project').modal('hide');
-	                app.navigate('/', true);
+	                that.close();
 	            },
 	            error: function () {
 	                alert('Sorry something went wrong.');
@@ -15819,10 +15822,8 @@ define('EditView',[
 	    		'description': description
 	    		},{
 	    		success: function () {
-	    			that.undelegateEvents();
 					console.log('Project updated successfully');
-	                $('#edit-project').modal('hide');
-	                app.navigate('/', true);
+                	that.close();
 	    		},
 	    		error: function () {
 	    			alert('Sorry something went wrong.');
@@ -15833,8 +15834,13 @@ define('EditView',[
 
 	    close: function () {
 
+	    	console.log('Close: Edit project');
+
+			this.undelegateEvents();
+	    	$('#edit-project').modal('hide');
+	    	$('#edit-project').off();
+
 	    	app.navigate('/', true);  
-	    	console.log('close');
 
 	    }
 	    
@@ -15972,8 +15978,17 @@ define('AddProjectView',[
 		el: '#add-project',
 
 		events: {
-			'click .save': 'saveProject',
-			'click .close-modal': 'close'
+			'click .save': 'saveProject'
+		},
+
+		initialize: function () {
+
+			var that = this;
+			
+			$('#add-project').on('hidden.bs.modal', function () {
+				that.close();
+			});
+
 		},
 
 		saveProject: function () {
@@ -15994,10 +16009,8 @@ define('AddProjectView',[
 
 	    	project.save(null, {
 	    		success: function (model, response, options) {
-	    			that.undelegateEvents();
 	    			console.log('Project saved to MongoDB');
-	    			$('#add-project').modal('hide');
-	                app.navigate('/', true);
+	    			that.close();
 	    		}, 
 	    		error: function (model, response, options) {
 	    			alert('Sorry something went wrong');
@@ -16008,9 +16021,14 @@ define('AddProjectView',[
 
 		close: function () {
 
-			app.navigate('/', true);
-			console.log('cancel');
+			console.log('Close: Add project');
 			
+			this.undelegateEvents();
+			$('#add-project').modal('hide');
+			$('#add-project').off();
+
+			app.navigate('/', true);
+
 		}
 		
 	});
@@ -16018,9 +16036,6 @@ define('AddProjectView',[
 	return AddProjectView;
     
 });
-
-
-
 
 define('IntroView',[
     'jquery', 
@@ -16112,8 +16127,7 @@ define('main',[
             
             projectModel.fetch({
                 success: function(model) {
-                    console.log('success', model);
-                    $('#edit-project').modal();
+                    $('#edit-project').modal('show');
                     var editView = new EditView({model: model});
                 }
             });
@@ -16121,13 +16135,8 @@ define('main',[
         },
 
         addProject: function () {
-            
-            if (addProjectView) {
-                console.log('view already exists');   
-            }
 
             var addProjectView = new AddProjectView();
-
             $('#add-project').modal('show');
 
         }

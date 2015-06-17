@@ -59,8 +59,7 @@ define([
             
             projectModel.fetch({
                 success: function(model) {
-                    console.log('success', model);
-                    $('#edit-project').modal();
+                    $('#edit-project').modal('show');
                     var editView = new EditView({model: model});
                 }
             });
@@ -68,13 +67,8 @@ define([
         },
 
         addProject: function () {
-            
-            if (addProjectView) {
-                console.log('view already exists');   
-            }
 
             var addProjectView = new AddProjectView();
-
             $('#add-project').modal('show');
 
         }

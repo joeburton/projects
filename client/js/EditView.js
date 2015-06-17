@@ -12,8 +12,7 @@ define([
 
 		events: {
 			'click .btn-danger.delete': 'deleteProject',
-			'click .btn-primary.save': 'updateProject',
-			'click .close-modal': 'close'
+			'click .btn-primary.save': 'updateProject'
 		},
 
 		initialize: function () {
@@ -22,6 +21,12 @@ define([
 	    	this.$el.find('[data-company-name]').val(this.model.get('company'));
 	    	this.$el.find('[data-skills]').val(this.model.get('skills'));
 	    	this.$el.find('[data-description]').val(this.model.get('description'));
+			
+			var that = this;
+
+			$('#edit-project').on('hidden.bs.modal', function () {
+				that.close();
+			});
 
 		},
 
@@ -31,10 +36,8 @@ define([
 
 	        this.model.destroy({
 	            success: function () {
-	                that.undelegateEvents();
 	                console.log('Project deleted successfully');
-	                $('#edit-project').modal('hide');
-	                app.navigate('/', true);
+	                that.close();
 	            },
 	            error: function () {
 	                alert('Sorry something went wrong.');
@@ -58,10 +61,8 @@ define([
 	    		'description': description
 	    		},{
 	    		success: function () {
-	    			that.undelegateEvents();
 					console.log('Project updated successfully');
-	                $('#edit-project').modal('hide');
-	                app.navigate('/', true);
+                	that.close();
 	    		},
 	    		error: function () {
 	    			alert('Sorry something went wrong.');
@@ -72,8 +73,13 @@ define([
 
 	    close: function () {
 
+	    	console.log('Close: Edit project');
+
+			this.undelegateEvents();
+	    	$('#edit-project').modal('hide');
+	    	$('#edit-project').off();
+
 	    	app.navigate('/', true);  
-	    	console.log('close');
 
 	    }
 	    
