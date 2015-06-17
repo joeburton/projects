@@ -10,7 +10,7 @@ router.get('/projects', function(req, res, next) {
 });
 
 router.get('/projects/:id', function(req, res, next) {
-  res.render('index', { title: 'Project Directory - Projects' });
+  res.render('index', { title: 'Project Directory - Projects Details' });
 });
 
 router.get('/about', function(req, res, next) {

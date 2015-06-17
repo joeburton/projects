@@ -11,7 +11,8 @@ define([
 		el: '#add-project',
 
 		events: {
-			'click .save': 'saveProject'
+			'click .save': 'saveProject',
+			'click [data-close-modal]': 'close'
 		},
 
 		initialize: function () {
@@ -56,9 +57,9 @@ define([
 
 			console.log('Close: Add project');
 			
-			this.undelegateEvents();
-			$('#add-project').modal('hide');
 			$('#add-project').off();
+			$('#add-project').modal('hide');
+			this.undelegateEvents();
 
 			app.navigate('/', true);
 

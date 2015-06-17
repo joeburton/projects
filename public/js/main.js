@@ -15773,7 +15773,8 @@ define('EditView',[
 
 		events: {
 			'click .btn-danger.delete': 'deleteProject',
-			'click .btn-primary.save': 'updateProject'
+			'click .btn-primary.save': 'updateProject',
+			'click [data-close-modal]': 'close'
 		},
 
 		initialize: function () {
@@ -15836,9 +15837,9 @@ define('EditView',[
 
 	    	console.log('Close: Edit project');
 
-			this.undelegateEvents();
-	    	$('#edit-project').modal('hide');
-	    	$('#edit-project').off();
+			$('#edit-project').off();
+			$('#edit-project').modal('hide');
+	    	this.undelegateEvents();
 
 	    	app.navigate('/', true);  
 
@@ -15978,7 +15979,8 @@ define('AddProjectView',[
 		el: '#add-project',
 
 		events: {
-			'click .save': 'saveProject'
+			'click .save': 'saveProject',
+			'click [data-close-modal]': 'close'
 		},
 
 		initialize: function () {
@@ -16023,9 +16025,9 @@ define('AddProjectView',[
 
 			console.log('Close: Add project');
 			
-			this.undelegateEvents();
-			$('#add-project').modal('hide');
 			$('#add-project').off();
+			$('#add-project').modal('hide');
+			this.undelegateEvents();
 
 			app.navigate('/', true);
 

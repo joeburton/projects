@@ -12,7 +12,8 @@ define([
 
 		events: {
 			'click .btn-danger.delete': 'deleteProject',
-			'click .btn-primary.save': 'updateProject'
+			'click .btn-primary.save': 'updateProject',
+			'click [data-close-modal]': 'close'
 		},
 
 		initialize: function () {
@@ -75,9 +76,9 @@ define([
 
 	    	console.log('Close: Edit project');
 
-			this.undelegateEvents();
-	    	$('#edit-project').modal('hide');
-	    	$('#edit-project').off();
+			$('#edit-project').off();
+			$('#edit-project').modal('hide');
+	    	this.undelegateEvents();
 
 	    	app.navigate('/', true);  
 
