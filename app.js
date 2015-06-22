@@ -26,7 +26,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/about', routes);
 app.use('/projects', routes);
 app.use('/projects/:id', routes);
 
