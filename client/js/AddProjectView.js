@@ -38,8 +38,12 @@ define([
 	    		'skills': skills,
 	    		'description': description,
 	    	});
+
+	    	project.on('invalid', function (project, error) {
+	    		alert('Error: ' + error);
+	    	});
 			
-			var that = this;
+	    	var that = this;
 
 	    	project.save(null, {
 	    		success: function (model, response, options) {
