@@ -4,7 +4,7 @@ var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 
 // API
-var production = true;
+var production = false;
 var url;
 var dbObj;
 
@@ -62,7 +62,7 @@ exports.addProject = function(req, res) {
     var project = req.body;
 
     console.log('Adding Project: ' + JSON.stringify(project));
-    
+
     dbObj.collection('projects', function(err, collection) {
         collection.insert(project, {safe:true}, function(err, result) {
             if (err) {
