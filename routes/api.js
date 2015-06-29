@@ -96,7 +96,7 @@ exports.addProject = function(req, res) {
     var project = req.body;
 
     console.log('Adding Project: ' + JSON.stringify(project));
-    
+
     dbObj.collection('projects', function(err, collection) {
         collection.insert(project, {safe:true}, function(err, result) {
             if (err) {
