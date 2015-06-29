@@ -4,8 +4,9 @@ define([
     'backbone',
     'bootstrap',
     'text!templates/project.html',
+    'text!templates/project-admin.html',
     'EditView'
-], function($, _, Backbone, bootstrap, projectTmpl, EditView) {
+], function($, _, Backbone, bootstrap, templatesUser, templatesAdmin, EditView) {
     
 	var ProjectView = Backbone.View.extend({
 
@@ -15,18 +16,24 @@ define([
 			'click .edit-project': 'editView'
 		},
 
-		template: _.template(projectTmpl),
+		templateUser: _.template(templatesUser),
+
+		templateAdmin: _.template(templatesAdmin),
 		
 		render: function () {
-			
-			this.$el.html(this.template(this.model.toJSON()));
+
+			console.log(Backbone.history.getFragment());
+
+			var template = (Backbone.history.getFragment() === 'admin') ? this.templateAdmin : this.templateUser;
+
+			this.$el.html(template(this.model.toJSON()));
 			
 			return this;
 
 		},
 
 	    editView: function () {
-	        app.navigate('projects/' + this.model.get('_id'), true);
+	        app.navigate('admin/edit/' + this.model.get('_id'), true);
 	    }
 
 	});

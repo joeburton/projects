@@ -27,9 +27,9 @@ define([
         
         routes: {
             "": "start",
-            "projects": 'start',
-            "add": 'addProject',
-            "projects/:id": 'projectDetails'
+            "admin": 'start',
+            "admin/add": 'addProject',
+            "admin/edit/:id": 'projectDetails'
         },
 
         initialize: function() {
@@ -39,7 +39,7 @@ define([
         },
 
         start: function () {
-            
+                
             var projectsCollection = new ProjectsCollection();
 
             projectsCollection.fetch({

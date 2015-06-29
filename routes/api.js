@@ -4,9 +4,10 @@ var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 
 // API
-var production = true;
+var production = false;
 var url;
 var dbObj;
+var sess;
 
 
 // Connection URL 
@@ -26,9 +27,44 @@ MongoClient.connect(url, function(err, db) {
 });
 
 
+// login
+exports.login = function (req, res) {
+    
+    sess = req.session;
+
+    sess.user = req.body.user;
+    sess.password = req.body.password;
+
+    if (sess.user === 'joe' && sess.password === 'burton') {
+        console.log('Login Successful');
+        sess.authenticated = true;
+        res.redirect('/admin');
+    } else {
+        console.log('Login Failed');
+        res.redirect('/login');
+    }
+
+};
+
+
+// logout
+exports.logout = function (req, res) {
+    
+    req.session.destroy(function(err) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('Successful logout');
+            res.redirect('/login');
+        }
+    });
+
+};
+
+
 // get all projects in the collection
 exports.findAll = function(req, res) {
-    
+
     var collection = dbObj.collection('projects');
 
     collection.find({}).toArray(function(err, docs) {
@@ -38,7 +74,6 @@ exports.findAll = function(req, res) {
     });
 
 };
-
 
 // get projects by id
 exports.findById = function(req, res) {
@@ -54,7 +89,6 @@ exports.findById = function(req, res) {
     });
 
 };
-
 
 // add a new project
 exports.addProject = function(req, res) {
@@ -76,6 +110,7 @@ exports.addProject = function(req, res) {
 
 }
 
+// update project
 exports.updateProject = function(req, res) {
     var id = req.params.id;
     var project = req.body;
@@ -95,6 +130,7 @@ exports.updateProject = function(req, res) {
     });
 }
 
+// delete project
 exports.deleteProject = function(req, res) {
     var id = req.params.id;
     console.log('Deleting project: ' + id);
@@ -109,7 +145,6 @@ exports.deleteProject = function(req, res) {
         });
     });
 }
-
 
 // populate database
 exports.populateDatabase = function (req, res) {

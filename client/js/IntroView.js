@@ -15,7 +15,7 @@ define([
 		},
 
 		addProjects: function () {
-			app.navigate('/add', true);
+			app.navigate('admin/add', true);
 		}
 
 	});

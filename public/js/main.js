@@ -15757,7 +15757,10 @@ define('text',['module'], function (module) {
 });
 
 
-define('text!templates/project.html',[],function () { return '    <div class="col-md-12">\n        <h2><%= project %></h2>\n        <h3><%= company %></h3>\n        <p><%= skills %></p>\n        <p><%= description %></p>\n        <p><a class="btn btn-default edit-project" href="" role="button" data-toggle="modal">Edit Project</a></p>\n        <hr>\n    </div>';});
+define('text!templates/project.html',[],function () { return '    <div class="col-md-12">\n        <h2><%= project %></h2>\n        <h3><%= company %></h3>\n        <p><%= skills %></p>\n        <p><%= description %></p>\n        <!-- <p><a class="btn btn-default edit-project" href="" role="button" data-toggle="modal">Edit Project</a></p> -->\n        <hr>\n    </div>';});
+
+
+define('text!templates/project-admin.html',[],function () { return '    <div class="col-md-12">\n        <h2><%= project %></h2>\n        <h3><%= company %></h3>\n        <p><%= skills %></p>\n        <p><%= description %></p>\n        <p><a class="btn btn-default edit-project" href="" role="button" data-toggle="modal">Edit Project</a></p>\n        <hr>\n    </div>';});
 
 define('EditView',[
     'jquery', 
@@ -15841,7 +15844,7 @@ define('EditView',[
 			$('#edit-project').modal('hide');
 	    	this.undelegateEvents();
 
-	    	app.navigate('/', true);  
+	    	app.navigate('/admin', true);  
 
 	    }
 	    
@@ -15857,8 +15860,9 @@ define('ProjectView',[
     'backbone',
     'bootstrap',
     'text!templates/project.html',
+    'text!templates/project-admin.html',
     'EditView'
-], function($, _, Backbone, bootstrap, projectTmpl, EditView) {
+], function($, _, Backbone, bootstrap, templatesUser, templatesAdmin, EditView) {
     
 	var ProjectView = Backbone.View.extend({
 
@@ -15868,18 +15872,24 @@ define('ProjectView',[
 			'click .edit-project': 'editView'
 		},
 
-		template: _.template(projectTmpl),
+		templateUser: _.template(templatesUser),
+
+		templateAdmin: _.template(templatesAdmin),
 		
 		render: function () {
-			
-			this.$el.html(this.template(this.model.toJSON()));
+
+			console.log(Backbone.history.getFragment());
+
+			var template = (Backbone.history.getFragment() === 'admin') ? this.templateAdmin : this.templateUser;
+
+			this.$el.html(template(this.model.toJSON()));
 			
 			return this;
 
 		},
 
 	    editView: function () {
-	        app.navigate('projects/' + this.model.get('_id'), true);
+	        app.navigate('admin/edit/' + this.model.get('_id'), true);
 	    }
 
 	});
@@ -16029,7 +16039,7 @@ define('AddProjectView',[
 			$('#add-project').modal('hide');
 			this.undelegateEvents();
 
-			app.navigate('/', true);
+			app.navigate('/admin', true);
 
 		}
 		
@@ -16056,7 +16066,7 @@ define('IntroView',[
 		},
 
 		addProjects: function () {
-			app.navigate('/add', true);
+			app.navigate('admin/add', true);
 		}
 
 	});
@@ -16097,9 +16107,9 @@ define('main',[
         
         routes: {
             "": "start",
-            "projects": 'start',
-            "add": 'addProject',
-            "projects/:id": 'projectDetails'
+            "admin": 'start',
+            "admin/add": 'addProject',
+            "admin/edit/:id": 'projectDetails'
         },
 
         initialize: function() {
@@ -16109,7 +16119,7 @@ define('main',[
         },
 
         start: function () {
-            
+                
             var projectsCollection = new ProjectsCollection();
 
             projectsCollection.fetch({

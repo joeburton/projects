@@ -80,7 +80,7 @@ define([
 			$('#edit-project').modal('hide');
 	    	this.undelegateEvents();
 
-	    	app.navigate('/', true);  
+	    	app.navigate('/admin', true);  
 
 	    }
 	    
