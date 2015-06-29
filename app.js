@@ -36,13 +36,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(routes);
 
+app.get('/populate-database', api.populateDatabase); // populate database
+
 app.get('/source', api.findAll); // get all projects
 app.get('/source/:id', api.findById); // get project by id
 app.post('/source', api.addProject); // add project
 app.put('/source/:id', api.updateProject); // update project
 app.delete('/source/:id', api.deleteProject); // delete project
-
-app.get('/populate-database', api.populateDatabase); // populate database
 
 app.post('/login', api.login); // login
 app.get('/logout', api.logout); // logout

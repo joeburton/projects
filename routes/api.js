@@ -115,6 +115,7 @@ exports.updateProject = function(req, res) {
     var id = req.params.id;
     var project = req.body;
     delete project._id;
+    console.log('Project: ' + project);
     console.log('Updating project: ' + id);
     console.log(JSON.stringify(project));
     dbObj.collection('projects', function(err, collection) {
