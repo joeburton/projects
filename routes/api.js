@@ -13,6 +13,7 @@ var sess;
 if (production) {
     // production
     url = 'mongodb://projects:UGRJRzNidzVFK2JZbWdRYjdzZGpETFdCUURDeXRkeHYwUlRJUkNsdHJNcz0K@172.17.0.15:27017/projectsdb-production';
+    url = process.ENV.MONGO_URL;
 } else {
     // local dev
     url = 'mongodb://localhost:27017/projectsdb';

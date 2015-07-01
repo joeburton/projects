@@ -6,6 +6,8 @@ git add .
 git commit -m "firtst commit"
 git push dokku master
 
+--------------------------------------------------------------
+
 #Install MongoDB on Digital Ocean
 http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
 
@@ -20,29 +22,32 @@ https://github.com/jeffutter/dokku-mongodb-plugin
 git clone https://github.com/jeffutter/dokku-mongodb-plugin.git /var/lib/dokku/plugins/mongodb
 dokku plugins-install
 
+---------------------------------------------------------------
+
 #Start MongoDD
 dokku mongodb:start
 
-#Create a database and associate it with app: dokku mongodb:create <database> <project>
-dokku mongodb:create projectsdb projects
+#Create a database and associate it with app: dokku mongodb:create <app> <database>
+dokku mongodb:create projects projectsdb
 
 #Link database to app - dokku mongodb:link <app> <database>
 dokku mongodb:link projects projectsdb
 
-#Delete database app - dokku mongodb:delete <database> <project>
-dokku mongodb:delete projectsdb projects
+#Delete database app - dokku mongodb:delete <app> <database> 
+dokku mongodb:delete projects projectsdb 
 
 #Config - retrive environment variables
 dokku config projects
 
-MONGODB_DATABASE: projects-production
-MONGODB_HOST:     172.17.0.17
-MONGODB_PASSWORD: a3pWM2JQZ3UrR1lDQ0N0TG1aVXFJK2FWcml3cGt1c1FsK08xbHpJUkNsOD0K
+MONGODB_DATABASE: projectsdb-production
+MONGODB_HOST:     172.17.0.15
+MONGODB_PASSWORD: UGRJRzNidzVFK2JZbWdRYjdzZGpETFdCUURDeXRkeHYwUlRJUkNsdHJNcz0K
 MONGODB_PORT:     27017
 MONGODB_USERNAME: projects
-MONGO_URI:        mongodb://projects:a3pWM2JQZ3UrR1lDQ0N0TG1aVXFJK2FWcml3cGt1c1FsK08xbHpJUkNsOD0K@172.17.0.17:27017/projects-production
-MONGO_URL:        mongodb://projects:a3pWM2JQZ3UrR1lDQ0N0TG1aVXFJK2FWcml3cGt1c1FsK08xbHpJUkNsOD0K@172.17.0.17:27017/projects-production
+MONGO_URI:        mongodb://projects:UGRJRzNidzVFK2JZbWdRYjdzZGpETFdCUURDeXRkeHYwUlRJUkNsdHJNcz0K@172.17.0.15:27017/projectsdb-production
+MONGO_URL:        mongodb://projects:UGRJRzNidzVFK2JZbWdRYjdzZGpETFdCUURDeXRkeHYwUlRJUkNsdHJNcz0K@172.17.0.15:27017/projectsdb-production
 
+--------------------------------------------------------------------
 
 MongoDB Query stuff: 
 $ dokku mongodb:console
