@@ -12,7 +12,7 @@ var sess;
 // Connection URL 
 if (production) {
     // production
-    url = 'mongodb://projects:a3pWM2JQZ3UrR1lDQ0N0TG1aVXFJK2FWcml3cGt1c1FsK08xbHpJUkNsOD0K@172.17.0.17:27017/projects-production';
+    url = 'mongodb://projects:UGRJRzNidzVFK2JZbWdRYjdzZGpETFdCUURDeXRkeHYwUlRJUkNsdHJNcz0K@172.17.0.15:27017/projectsdb-production';
 } else {
     // local dev
     url = 'mongodb://localhost:27017/projectsdb';
