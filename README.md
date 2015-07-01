@@ -24,12 +24,13 @@ dokku plugins-install
 dokku mongodb:start
 
 #Create a database and associate it with app: dokku mongodb:create <database> <project>
-dokku mongodb:create projects projects
+dokku mongodb:create projectsdb projects
 
-#Link database to app - mongodb:link <app> <database>
+#Link database to app - dokku mongodb:link <app> <database>
+dokku mongodb:link projects projectsdb
 
-#Remove database - app dokku mongodb:delete <database> <project>
-dokku mongodb:delete projects projects
+#Delete database app - dokku mongodb:delete <database> <project>
+dokku mongodb:delete projectsdb projects
 
 #Config - retrive environment variables
 dokku config projects
