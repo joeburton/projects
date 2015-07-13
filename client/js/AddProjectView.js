@@ -29,12 +29,14 @@ define([
 
 	    	var project = this.$el.find('[data-project-name]').val();
 	    	var company = this.$el.find('[data-company-name]').val();
+	    	var link = this.$el.find('[data-link]').val();
 	    	var skills = this.$el.find('[data-skills]').val();
 	    	var description = this.$el.find('[data-description]').val();
 
 	    	var project = new ProjectModel({
 	    		'project': project,
 	    		'company': company,
+	    		'link': link,
 	    		'skills': skills,
 	    		'description': description,
 	    	});

@@ -15784,6 +15784,7 @@ define('EditView',[
 
 	    	this.$el.find('[data-project-name]').val(this.model.get('project'));
 	    	this.$el.find('[data-company-name]').val(this.model.get('company'));
+	    	this.$el.find('[data-link]').val(this.model.get('link'));
 	    	this.$el.find('[data-skills]').val(this.model.get('skills'));
 	    	this.$el.find('[data-description]').val(this.model.get('description'));
 			
@@ -15815,6 +15816,7 @@ define('EditView',[
 	    	
 	    	var project = this.$el.find('[data-project-name]').val();
 	    	var company = this.$el.find('[data-company-name]').val();
+	    	var link = this.$el.find('[data-link]').val();
 	    	var skills = this.$el.find('[data-skills]').val();
 	    	var description = this.$el.find('[data-description]').val();
 	    	var that = this;
@@ -15822,6 +15824,7 @@ define('EditView',[
 	    	this.model.save({
 	    		'project': project,
 	    		'company': company,
+	    		'link': link,
 	    		'skills': skills,
 	    		'description': description
 	    		},{
@@ -16027,12 +16030,14 @@ define('AddProjectView',[
 
 	    	var project = this.$el.find('[data-project-name]').val();
 	    	var company = this.$el.find('[data-company-name]').val();
+	    	var link = this.$el.find('[data-link]').val();
 	    	var skills = this.$el.find('[data-skills]').val();
 	    	var description = this.$el.find('[data-description]').val();
 
 	    	var project = new ProjectModel({
 	    		'project': project,
 	    		'company': company,
+	    		'link': link,
 	    		'skills': skills,
 	    		'description': description,
 	    	});
