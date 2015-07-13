@@ -5,6 +5,7 @@ var ObjectId = require('mongodb').ObjectID;
 
 // API
 var production = true;
+
 var url;
 var dbObj;
 var sess;
@@ -152,30 +153,35 @@ exports.populateDatabase = function (req, res) {
     var projects = [
     {
         project: "m.lastminute.com",
+        link: "http://m.lastminute.com",
         company: "lastminute.com",
         skills: "Backbone, JavaScript, Jasmine, Require",
         description: "Whilst working for lastminute.com I worked on two specific projects. For the first project I created an HTML5, LESS/ CSS3 & JavaScript mobile-first responsive search form component that used the Bootstrap framework for the underlying grid and basic styling."
     },
     {
         project: "Closer Magazine",
+        link: "http://www.closeronline.co.uk",
         company: "Bauer Media",
         skills: "JavaScript, Backbone, Jasmine, Require",
         description: " I was employed by Bauer Media to work across two teams, the UI Team and the Back end CMS Team. In the UI team I contributed towards the development of the responsive front-end build of the new Closer Magazine online edition creating responsive HTML/CSS page templates and writing any JavaScript functionality where necessary"
     },
     {
-        project: "Blue Square",
+        project: "Blue Star",
+        link: "http://joe-burton.com/bluestar/",
         company: "Rank Interactive",
         skills: "Backbone, JavaScript, Jasmine, Require",
         description: "I was responsible for managing a team of Front-end Developers in the responsive rebuild of bluesq.com. This involved creating an HTML5, LESS/ CSS and JavaScript framework that worked across mobile, tablet and desktop. I was also responsible on a day-to-day basis for managing the production of HTML prototypes to demonstrate different ideas from the UX Team."
     },
     {
         project: "Fabulous Magazine",
+        link: "http://www.thesun.co.uk/sol/homepage/fabulous",
         company: "Engine",
         skills: "HTML5, CSS3, JavaScript/jQuery",
         description: "I worked for Jam @ The Engine Group in Soho as a Mobile Front-end Developer building HTML5, CSS3, JavaScript/jQuery smart-phone and desktop websites. This contract was a great opportunity to develop my Mobile development skills working on the mobile version of the fabulous magazine http://fabulousmag.co.uk and several small Sky mobile promotional sites."
     },
     {
         project: "John Lewis",
+        link: "http://www.johnlewis.com",
         company: "SapientNitro",
         skills: "HTML5, CSS3, JavaScript/jQuery",
         description: "Whilst working for Sapient on this contract I was based client side at John Lewis, working in a team of Front-end Developers in an Agile Software Development Environment. I was responsible for creating well structured JavaScript/jQuery functionality and clean HTML/CSS template components keeping all code as re-usable and standards compliant as possible. We introduced HTML5 and CSS3 to the project using a progressive enhancement approach so as not to limit the site to just the latest browsers."
