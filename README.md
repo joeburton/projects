@@ -1,4 +1,4 @@
-#Projects Application
+#Projects Directory Application
 
 #Setup Dokku
 git remote add dokku dokku@projects.joe-burton.com:projects
