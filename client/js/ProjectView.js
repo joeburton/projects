@@ -8,36 +8,36 @@ define([
     'EditView'
 ], function($, _, Backbone, bootstrap, templatesUser, templatesAdmin, EditView) {
     
-	var ProjectView = Backbone.View.extend({
+    var ProjectView = Backbone.View.extend({
 
-		className: 'row',
+        className: 'row',
 
-		events: {
-			'click .edit-project': 'editView'
-		},
+        events: {
+            'click .edit-project': 'editView'
+        },
 
-		templateUser: _.template(templatesUser),
+        templateUser: _.template(templatesUser),
 
-		templateAdmin: _.template(templatesAdmin),
-		
-		render: function () {
+        templateAdmin: _.template(templatesAdmin),
+        
+        render: function () {
 
-			console.log(Backbone.history.getFragment());
+            console.log(Backbone.history.getFragment());
 
-			var template = (Backbone.history.getFragment() === 'admin') ? this.templateAdmin : this.templateUser;
+            var template = (Backbone.history.getFragment() === 'admin') ? this.templateAdmin : this.templateUser;
 
-			this.$el.html(template(this.model.toJSON()));
-			
-			return this;
+            this.$el.html(template(this.model.toJSON()));
+            
+            return this;
 
-		},
+        },
 
-	    editView: function () {
-	        app.navigate('admin/edit/' + this.model.get('_id'), true);
-	    }
+        editView: function () {
+            app.navigate('admin/edit/' + this.model.get('_id'), true);
+        }
 
-	});
+    });
 
-	return ProjectView;
+    return ProjectView;
     
 });

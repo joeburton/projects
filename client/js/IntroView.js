@@ -6,21 +6,21 @@ define([
     'AddProjectView'
 ], function($, _, Backbone, bootstrap, AddProjectView) {
     
-	var IntroView = Backbone.View.extend({
+    var IntroView = Backbone.View.extend({
 
-		el: '.intro',
+        el: '.intro',
 
-		events: {
-			'click .add-project': 'addProjects'
-		},
+        events: {
+            'click .add-project': 'addProjects'
+        },
 
-		addProjects: function () {
-			app.navigate('admin/add', true);
-		}
+        addProjects: function () {
+            app.navigate('admin/add', true);
+        }
 
-	});
+    });
 
-	return IntroView;
+    return IntroView;
     
 });
 

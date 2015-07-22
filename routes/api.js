@@ -4,7 +4,7 @@ var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 
 // API
-var production = true;
+var production = false;
 
 var url;
 var dbObj;
@@ -35,7 +35,7 @@ exports.login = function (req, res) {
     sess.user = req.body.user;
     sess.password = req.body.password;
 
-    if (sess.user === 'joe' && sess.password === 'burton') {
+    if (sess.user === 'user' && sess.password === 'monster') {
         console.log('Login Successful');
         sess.authenticated = true;
         res.redirect('/admin');

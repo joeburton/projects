@@ -6,15 +6,15 @@ define([
     'ProjectModel',
 ], function($, _, Backbone, bootstrap, ProjectModel) {
     
-	var ProjectsCollection = Backbone.Collection.extend({
+    var ProjectsCollection = Backbone.Collection.extend({
 
-		model: ProjectModel,
+        model: ProjectModel,
 
-		url: "/source"
+        url: "/source"
 
-	});
+    });
 
-	return ProjectsCollection;
+    return ProjectsCollection;
     
 });
 
