@@ -1,6 +1,14 @@
 .intro {
-	background-color: #eee;
+	background-color: #222832;
 	padding: 50px 0;
+}
+
+.intro p {
+	color: #fff;
+}
+
+h1 {
+	color: #fff;
 }
 
 h2 {
@@ -28,3 +36,40 @@ footer {
 	max-width: 400px;
 	margin: 40px 0 40px 0;
 }
+
+.pd {
+	border-radius: 30px;
+    background-color: #222832;
+    width: 35px;
+    height: 35px;
+    display: block;
+    font-size: 15px;
+    color: #fff;
+    text-align: center;
+    padding: 7px 0px 0 2px;
+    margin: 8px 5px 0 15px;
+    font-weight: lighter;	
+}
+
+.lg .pd {
+	margin: 8px 25px 0 0;
+}
+
+/*
+media queries used in conjunction with lmn-js/breakpoints.js
+these must be combined with bootstrap's less variables
+*/
+
+body:after {
+    content: 'xs'; /* represent the current width-bracket */
+    font-size: 1px;
+    background: #ccc;
+    display: block;
+}
+
+@media screen and (min-width: 768px) {
+    body:after {
+        content: 'lg'; /* represent the current width-bracket */
+    }
+}
+

@@ -15770,90 +15770,90 @@ define('EditView',[
     'text!templates/project.html'
 ], function($, _, Backbone, bootstrap, projectTmpl) {
     
-	var EditView = Backbone.View.extend({
+    var EditView = Backbone.View.extend({
 
-		el: '#edit-project',
+        el: '#edit-project',
 
-		events: {
-			'click .btn-danger.delete': 'deleteProject',
-			'click .btn-primary.save': 'updateProject',
-			'click [data-close-modal]': 'close'
-		},
+        events: {
+            'click .btn-danger.delete': 'deleteProject',
+            'click .btn-primary.save': 'updateProject',
+            'click [data-close-modal]': 'close'
+        },
 
-		initialize: function () {
+        initialize: function () {
 
-	    	this.$el.find('[data-project-name]').val(this.model.get('project'));
-	    	this.$el.find('[data-company-name]').val(this.model.get('company'));
-	    	this.$el.find('[data-link]').val(this.model.get('link'));
-	    	this.$el.find('[data-skills]').val(this.model.get('skills'));
-	    	this.$el.find('[data-description]').val(this.model.get('description'));
-			
-			var that = this;
+            this.$el.find('[data-project-name]').val(this.model.get('project'));
+            this.$el.find('[data-company-name]').val(this.model.get('company'));
+            this.$el.find('[data-link]').val(this.model.get('link'));
+            this.$el.find('[data-skills]').val(this.model.get('skills'));
+            this.$el.find('[data-description]').val(this.model.get('description'));
+            
+            var that = this;
 
-			$('#edit-project').on('hidden.bs.modal', function () {
-				that.close();
-			});
+            $('#edit-project').on('hidden.bs.modal', function () {
+                that.close();
+            });
 
-		},
+        },
 
-	    deleteProject: function () {
+        deleteProject: function () {
 
-	    	var that = this;
+            var that = this;
 
-	        this.model.destroy({
-	            success: function () {
-	                console.log('Project deleted successfully');
-	                that.close();
-	            },
-	            error: function () {
-	                alert('Sorry something went wrong.');
-	            }
-	        });
-	        
-	    },
+            this.model.destroy({
+                success: function () {
+                    console.log('Project deleted successfully');
+                    that.close();
+                },
+                error: function () {
+                    alert('Sorry something went wrong.');
+                }
+            });
+            
+        },
 
-	    updateProject: function () {
-	    	
-	    	var project = this.$el.find('[data-project-name]').val();
-	    	var company = this.$el.find('[data-company-name]').val();
-	    	var link = this.$el.find('[data-link]').val();
-	    	var skills = this.$el.find('[data-skills]').val();
-	    	var description = this.$el.find('[data-description]').val();
-	    	var that = this;
+        updateProject: function () {
+            
+            var project = this.$el.find('[data-project-name]').val();
+            var company = this.$el.find('[data-company-name]').val();
+            var link = this.$el.find('[data-link]').val();
+            var skills = this.$el.find('[data-skills]').val();
+            var description = this.$el.find('[data-description]').val();
+            var that = this;
 
-	    	this.model.save({
-	    		'project': project,
-	    		'company': company,
-	    		'link': link,
-	    		'skills': skills,
-	    		'description': description
-	    		},{
-	    		success: function () {
-					console.log('Project updated successfully');
-                	that.close();
-	    		},
-	    		error: function () {
-	    			alert('Sorry something went wrong.');
-	    		}
-	    	});
+            this.model.save({
+                'project': project,
+                'company': company,
+                'link': link,
+                'skills': skills,
+                'description': description
+                },{
+                success: function () {
+                    console.log('Project updated successfully');
+                    that.close();
+                },
+                error: function () {
+                    alert('Sorry something went wrong.');
+                }
+            });
 
-	    },
+        },
 
-	    close: function () {
+        close: function () {
 
-	    	console.log('Close: Edit project');
+            console.log('Close: Edit project');
 
-			$('#edit-project').off();
-			$('#edit-project').modal('hide');
-	    	this.undelegateEvents();
+            $('#edit-project').off();
+            $('#edit-project').modal('hide');
+            this.undelegateEvents();
 
-	    	app.navigate('/admin', true);  
+            app.navigate('/admin', true);  
 
-	    }
-	    
-	});
+        }
+        
+    });
 
-	return EditView;
+    return EditView;
     
 });
 
@@ -15867,37 +15867,37 @@ define('ProjectView',[
     'EditView'
 ], function($, _, Backbone, bootstrap, templatesUser, templatesAdmin, EditView) {
     
-	var ProjectView = Backbone.View.extend({
+    var ProjectView = Backbone.View.extend({
 
-		className: 'row',
+        className: 'row',
 
-		events: {
-			'click .edit-project': 'editView'
-		},
+        events: {
+            'click .edit-project': 'editView'
+        },
 
-		templateUser: _.template(templatesUser),
+        templateUser: _.template(templatesUser),
 
-		templateAdmin: _.template(templatesAdmin),
-		
-		render: function () {
+        templateAdmin: _.template(templatesAdmin),
+        
+        render: function () {
 
-			console.log(Backbone.history.getFragment());
+            console.log(Backbone.history.getFragment());
 
-			var template = (Backbone.history.getFragment() === 'admin') ? this.templateAdmin : this.templateUser;
+            var template = (Backbone.history.getFragment() === 'admin') ? this.templateAdmin : this.templateUser;
 
-			this.$el.html(template(this.model.toJSON()));
-			
-			return this;
+            this.$el.html(template(this.model.toJSON()));
+            
+            return this;
 
-		},
+        },
 
-	    editView: function () {
-	        app.navigate('admin/edit/' + this.model.get('_id'), true);
-	    }
+        editView: function () {
+            app.navigate('admin/edit/' + this.model.get('_id'), true);
+        }
 
-	});
+    });
 
-	return ProjectView;
+    return ProjectView;
     
 });
 
@@ -15909,28 +15909,28 @@ define('ProjectsView',[
     'ProjectView'
 ], function($, _, Backbone, bootstrap, ProjectView) {
     
-	var ProjectsView = Backbone.View.extend({
+    var ProjectsView = Backbone.View.extend({
 
-		render: function () {
+        render: function () {
 
-			var container = document.createDocumentFragment();
+            var container = document.createDocumentFragment();
 
-		    this.collection.each(_.bind(function (model) {
-		      
-		        var projectView = new ProjectView({model: model});
-		        container.appendChild(projectView.render().el)
-		        
-		    }, this));
+            this.collection.each(_.bind(function (model) {
+              
+                var projectView = new ProjectView({model: model});
+                container.appendChild(projectView.render().el)
+                
+            }, this));
 
-		    this.$el.append(container);
+            this.$el.append(container);
 
-		    return this;
+            return this;
 
-		}
+        }
 
-	});
+    });
 
-	return ProjectsView;
+    return ProjectsView;
     
 });
 
@@ -15944,35 +15944,35 @@ define('ProjectModel',[
     'bootstrap',
 ], function($, _, Backbone, bootstrap) {
     
-	var ProjectModel = Backbone.Model.extend({
+    var ProjectModel = Backbone.Model.extend({
 
-		urlRoot: "/source",
+        urlRoot: "/source",
 
-		idAttribute: "_id",
+        idAttribute: "_id",
 
-		validate: function(attrs) {
+        validate: function(attrs) {
 
-			if (!attrs.project.length) {
-				return 'You must provide a project name.';
-			}
+            if (!attrs.project.length) {
+                return 'You must provide a project name.';
+            }
 
-			if (!attrs.company.length) {
-				return 'You must provide a company name.';
-			}
+            if (!attrs.company.length) {
+                return 'You must provide a company name.';
+            }
 
-			if (!attrs.skills.length) {
-				return 'You must provide a list of skills used on the project.';
-			}
+            if (!attrs.skills.length) {
+                return 'You must provide a list of skills used on the project.';
+            }
 
-			if (!attrs.description.length) {
-				return 'You must a project description.';
-			}
+            if (!attrs.description.length) {
+                return 'You must a project description.';
+            }
 
-		}
+        }
 
-	});
+    });
 
-	return ProjectModel;
+    return ProjectModel;
     
 });
 
@@ -15984,15 +15984,15 @@ define('ProjectsCollection',[
     'ProjectModel',
 ], function($, _, Backbone, bootstrap, ProjectModel) {
     
-	var ProjectsCollection = Backbone.Collection.extend({
+    var ProjectsCollection = Backbone.Collection.extend({
 
-		model: ProjectModel,
+        model: ProjectModel,
 
-		url: "/source"
+        url: "/source"
 
-	});
+    });
 
-	return ProjectsCollection;
+    return ProjectsCollection;
     
 });
 
@@ -16007,74 +16007,74 @@ define('AddProjectView',[
     'ProjectModel'
 ], function($, _, Backbone, bootstrap, ProjectModel) {
     
-	var AddProjectView = Backbone.View.extend({
+    var AddProjectView = Backbone.View.extend({
 
-		el: '#add-project',
+        el: '#add-project',
 
-		events: {
-			'click .save': 'saveProject',
-			'click [data-close-modal]': 'close'
-		},
+        events: {
+            'click .save': 'saveProject',
+            'click [data-close-modal]': 'close'
+        },
 
-		initialize: function () {
+        initialize: function () {
 
-			var that = this;
-			
-			$('#add-project').on('hidden.bs.modal', function () {
-				that.close();
-			});
+            var that = this;
+            
+            $('#add-project').on('hidden.bs.modal', function () {
+                that.close();
+            });
 
-		},
+        },
 
-		saveProject: function () {
+        saveProject: function () {
 
-	    	var project = this.$el.find('[data-project-name]').val();
-	    	var company = this.$el.find('[data-company-name]').val();
-	    	var link = this.$el.find('[data-link]').val();
-	    	var skills = this.$el.find('[data-skills]').val();
-	    	var description = this.$el.find('[data-description]').val();
+            var project = this.$el.find('[data-project-name]').val();
+            var company = this.$el.find('[data-company-name]').val();
+            var link = this.$el.find('[data-link]').val();
+            var skills = this.$el.find('[data-skills]').val();
+            var description = this.$el.find('[data-description]').val();
 
-	    	var project = new ProjectModel({
-	    		'project': project,
-	    		'company': company,
-	    		'link': link,
-	    		'skills': skills,
-	    		'description': description,
-	    	});
+            var project = new ProjectModel({
+                'project': project,
+                'company': company,
+                'link': link,
+                'skills': skills,
+                'description': description,
+            });
 
-	    	project.on('invalid', function (project, error) {
-	    		alert('Error: ' + error);
-	    	});
-			
-	    	var that = this;
+            project.on('invalid', function (project, error) {
+                alert('Error: ' + error);
+            });
+            
+            var that = this;
 
-	    	project.save(null, {
-	    		success: function (model, response, options) {
-	    			console.log('Project saved to MongoDB');
-	    			that.close();
-	    		}, 
-	    		error: function (model, response, options) {
-	    			alert('Sorry something went wrong');
-	    		}
-	    	});
+            project.save(null, {
+                success: function (model, response, options) {
+                    console.log('Project saved to MongoDB');
+                    that.close();
+                }, 
+                error: function (model, response, options) {
+                    alert('Sorry something went wrong');
+                }
+            });
 
-		},
+        },
 
-		close: function () {
+        close: function () {
 
-			console.log('Close: Add project');
-			
-			$('#add-project').off();
-			$('#add-project').modal('hide');
-			this.undelegateEvents();
+            console.log('Close: Add project');
+            
+            $('#add-project').off();
+            $('#add-project').modal('hide');
+            this.undelegateEvents();
 
-			app.navigate('/admin', true);
+            app.navigate('/admin', true);
 
-		}
-		
-	});
+        }
+        
+    });
 
-	return AddProjectView;
+    return AddProjectView;
     
 });
 
@@ -16086,27 +16086,95 @@ define('IntroView',[
     'AddProjectView'
 ], function($, _, Backbone, bootstrap, AddProjectView) {
     
-	var IntroView = Backbone.View.extend({
+    var IntroView = Backbone.View.extend({
 
-		el: '.intro',
+        el: '.intro',
 
-		events: {
-			'click .add-project': 'addProjects'
-		},
+        events: {
+            'click .add-project': 'addProjects'
+        },
 
-		addProjects: function () {
-			app.navigate('admin/add', true);
-		}
+        addProjects: function () {
+            app.navigate('admin/add', true);
+        }
 
-	});
+    });
 
-	return IntroView;
+    return IntroView;
     
 });
 
 
 
 
+define('breakPoints',[
+    'jquery'
+], function($) {
+    
+    var breakPoints = {
+
+        init: function () {
+
+            var self = this;
+
+            $(window).resize(function () {
+                self.getBreakPoints();
+            });
+
+            this.getBreakPoints();
+
+        },
+
+        getBreakPoints: function () {
+
+            var pseudo,
+                win,
+                doc,
+                el;
+
+            win = window;
+            doc = win.document;
+            el = doc.body;
+
+            // Less than ie9 remove the mobile view class xs from the body and exit
+            if ($('html').hasClass('lt-ie9')) {
+
+                // IE 8 and less by default don't get custom view styling
+                $(el).removeClass('xs').addClass('lg').attr('data-size', 'lg');
+
+            } else {
+
+                try {
+
+                    pseudo = this.getPseudoClass(win, el);
+
+                    $(el).removeClass('xs sm md lg').attr('data-size', '');
+
+                    // Remove double quotes from string.
+                    pseudo = pseudo.replace(/["']/g, '');
+
+                    $(el).addClass(pseudo).attr('data-size', pseudo);
+                } catch (e) {
+                    alert(e);
+                }
+
+            }
+        },
+
+        getPseudoClass: function (win, el) {
+
+            var pseudo = win.getComputedStyle(el, ':after'),
+                breakPointClass = pseudo.getPropertyValue('content');
+
+            return breakPointClass;
+
+        }
+
+    };
+
+    return breakPoints;
+    
+});
 require.config({
     paths: {
         jquery: 'lib/jquery',
@@ -16129,8 +16197,9 @@ define('main',[
     'EditView',
     'ProjectModel',
     'IntroView',
-    'AddProjectView'
-], function($, _, Backbone, bootstrap, ProjectsView, ProjectsCollection, EditView, ProjectModel, IntroView, AddProjectView) {
+    'AddProjectView',
+    'breakPoints'
+], function($, _, Backbone, bootstrap, ProjectsView, ProjectsCollection, EditView, ProjectModel, IntroView, AddProjectView, breakPoints) {
 
     var AppRouter = Backbone.Router.extend({
         
@@ -16144,6 +16213,7 @@ define('main',[
         initialize: function() {
 
             var introView = new IntroView();
+            breakPoints.init();
 
         },
 

@@ -20,8 +20,9 @@ define([
     'EditView',
     'ProjectModel',
     'IntroView',
-    'AddProjectView'
-], function($, _, Backbone, bootstrap, ProjectsView, ProjectsCollection, EditView, ProjectModel, IntroView, AddProjectView) {
+    'AddProjectView',
+    'breakPoints'
+], function($, _, Backbone, bootstrap, ProjectsView, ProjectsCollection, EditView, ProjectModel, IntroView, AddProjectView, breakPoints) {
 
     var AppRouter = Backbone.Router.extend({
         
@@ -35,6 +36,7 @@ define([
         initialize: function() {
 
             var introView = new IntroView();
+            breakPoints.init();
 
         },
 
