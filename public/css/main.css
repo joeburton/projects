@@ -43,7 +43,7 @@ footer {
 }
 
 .pd {
-	border-radius: 30px;
+    border-radius: 30px;
     background-color: #222832;
     width: 35px;
     height: 35px;
@@ -53,7 +53,31 @@ footer {
     text-align: center;
     padding: 7px 0px 0 2px;
     margin: 8px 5px 0 15px;
-    font-weight: lighter;	
+    font-weight: lighter;   
+
+    position: relative;
+    -webkit-transition-duration: .8s;
+    -moz-transition-duration: .8s;
+    -o-transition-duration: .8s;
+    -ms-transition-duration: .8s;
+
+}
+
+.pd:hover {
+    text-decoration: none; 
+    color: #fff;
+
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg)
+}
+
+.pd:focus,
+.pd:blur {
+    text-decoration: none; 
+    color: #fff;
 }
 
 .lg .pd {
