@@ -428,7 +428,7 @@ var requirejs, require, define;
     };
 }());
 
-define("requireLib", function(){});
+define("lib/almond", function(){});
 
 /*!
  * jQuery JavaScript Library v2.1.1
