@@ -55,7 +55,7 @@ footer {
     -moz-transition-duration: .8s;
     -o-transition-duration: .8s;
     -ms-transition-duration: .8s;
-
+    transition-duration: .8s;
 }
 
 .pd:hover {
