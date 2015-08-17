@@ -27,7 +27,7 @@ gulp.task('build', function () {
 });
 
 gulp.task('watch', function () {
-    watch('js/*.js', function () {
+    watch(['js/*.js', 'css/*.css'], function () {
         gulp.start(['css', 'js', 'build']);
     });
 });
