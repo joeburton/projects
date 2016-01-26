@@ -51,13 +51,30 @@ dokku config projects
 ```
 // MongoDB Query stuff: 
 $ dokku mongodb:console
-$ db.projects.find().pretty()
+$ db.getCollection("projects").find()
 ```
 
 ```
 // Start app locally
 cd ~/Sites/projects
 DEBUG=myapp npm start
+```
+
+```
+// Start database locally
+cd /usr/local/mongodb
+
+start mongoDB
+./bin/mongod
+
+start mongo shell
+./bin/mongo
+
+switch database
+use projectsdb
+
+return all collection/db records
+db.getCollection("projects").find()
 ```
 
 ```

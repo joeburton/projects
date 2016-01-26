@@ -35,7 +35,7 @@ exports.login = function (req, res) {
     sess.user = req.body.user;
     sess.password = req.body.password;
 
-    if (sess.user === 'user' && sess.password === 'monster') {
+    if (sess.user === 'user' && sess.password === 'monsters') {
         console.log('Login Successful');
         sess.authenticated = true;
         res.redirect('/admin');
