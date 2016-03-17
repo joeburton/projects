@@ -23,6 +23,8 @@ if (production) {
 // Use connect method to connect to the Server 
 MongoClient.connect(url, function(err, db) {
     console.log("Connected correctly to server");
+    console.log("http://localhost:3000/");
+    
     dbObj = db;
 });
 

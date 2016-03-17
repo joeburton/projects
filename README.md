@@ -1,7 +1,7 @@
 #Projects Directory
 Backbone, Node and MongoDB CRUD Application
 
-Hosed on Digital Ocean with dokku
+Hosted on Digital Ocean with dokku
 
 [Project Directory](http://projects.joe-burton.com)
 
