@@ -32,8 +32,6 @@ app.use(session({
     saveUninitialized: true
 }));
 
-//console.log(routes);
-
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(routes);

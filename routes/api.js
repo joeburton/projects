@@ -16,7 +16,7 @@ if (production) {
     url = 'mongodb://projects:UGRJRzNidzVFK2JZbWdRYjdzZGpETFdCUURDeXRkeHYwUlRJUkNsdHJNcz0K@172.17.0.15:27017/projectsdb-production';
 } else {
     // local dev
-    url = 'mongodb://localhost:27017/projectsdb';
+    url = 'mongodb://localhost:32768/projectsdb';
 }
 
 
@@ -37,7 +37,7 @@ exports.login = function (req, res) {
     sess.user = req.body.user;
     sess.password = req.body.password;
 
-    if (sess.user === 'joe' && sess.password === 'burton') {
+    if (sess.user === 'admin' && sess.password === 'projects') {
         console.log('Login Successful');
         sess.authenticated = true;
         res.redirect('/admin');
