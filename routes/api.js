@@ -5,7 +5,6 @@ var ObjectId = require('mongodb').ObjectID;
 
 // API
 var production = true;
-
 var url;
 var dbObj;
 var sess;
@@ -16,15 +15,17 @@ if (production) {
     url = 'mongodb://projects:UGRJRzNidzVFK2JZbWdRYjdzZGpETFdCUURDeXRkeHYwUlRJUkNsdHJNcz0K@172.17.0.15:27017/projectsdb-production';
 } else {
     // local dev
-    url = 'mongodb://localhost:32768/projectsdb';
+    url = 'mongodb://localhost:27017/projectsdb';
 }
 
+// standards dev ip 27017
+
+// get mongodb port
+// sudo lsof -iTCP -sTCP:LISTEN | grep mongo
 
 // Use connect method to connect to the Server 
 MongoClient.connect(url, function(err, db) {
-    console.log("Connected correctly to server");
-    console.log("http://localhost:3000/");
-    
+    console.log("Connected correctly to server, http://localhost:3000/", db);
     dbObj = db;
 });
 
@@ -66,6 +67,8 @@ exports.logout = function (req, res) {
 
 // get all projects in the collection
 exports.findAll = function(req, res) {
+
+    console.log(dbObj);
 
     var collection = dbObj.collection('projects');
 
