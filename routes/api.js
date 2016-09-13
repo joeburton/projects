@@ -4,7 +4,7 @@ var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 
 // API
-var production = true;
+var production = false;
 var url;
 var dbObj;
 var sess;
@@ -15,7 +15,7 @@ if (production) {
     url = 'mongodb://projects:UGRJRzNidzVFK2JZbWdRYjdzZGpETFdCUURDeXRkeHYwUlRJUkNsdHJNcz0K@172.17.0.15:27017/projectsdb-production';
 } else {
     // local dev
-    url = 'mongodb://localhost:27017/projectsdb';
+    url = 'mongodb://localhost:32769/projectsdb';
 }
 
 // standards dev ip 27017
@@ -156,6 +156,27 @@ exports.deleteProject = function(req, res) {
 exports.populateDatabase = function (req, res) {
     
     var projects = [
+    {
+        project: "Perfect Volkswagen",
+        link: "https://perfect.volkswagen.co.uk",
+        company: "Tribal Worldwide",
+        skills: "Backbone, Require, Jasmine, jQuery, HTML5, CSS3/SASS & Gulp",
+        description: "My Perfect Volkswagen is a SPA built in Backbone using Require to manage modules, SASS for the CSS and Gulp to manage the client-side files. I was responsible for adding new features and introducing unit testing using Jasmine."
+    },
+    {
+        project: "Avios Group",
+        link: "https://aviosgroup.com/",
+        company: "Tribal Worldwide",
+        skills: "JavaScript/ jQuery, Gulp",
+        description: "Avios Group, Mobile first responsive brochure style website"
+    },
+    {
+        project: "Helix Property",
+        link: "http://www.helixproperty.co.uk/",
+        company: "Millimetre Media",
+        skills: "JavaScript, CSS, PHP and Gulp",
+        description: "I was the sole Front-end Developer on this project. I used a Mobile First Responsive approach, using HTML5, CSS3 JavaScript/ jQuery and Browserify to manage my modules with Gulp to manage the front-end workflow."
+    },
     {
         project: "m.lastminute.com",
         link: "http://m.lastminute.com",
