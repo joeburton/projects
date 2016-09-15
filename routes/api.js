@@ -167,8 +167,8 @@ exports.populateDatabase = function (req, res) {
         project: "Avios Group",
         link: "https://aviosgroup.com/",
         company: "Tribal Worldwide",
-        skills: "JavaScript/ jQuery, Gulp",
-        description: "Avios Group, Mobile first responsive brochure style website"
+        skills: "Node, Express, Handlebars, CSS3, JavaScript/ jQuery, Gulp",
+        description: "Avios Group is a Mobile First Responsive website I worked on whilst at Tribal Worldwide. It's built using Node, Express, Handlebars, CSS3 and Gulp to manage the client-side files."
     },
     {
         project: "Helix Property",
