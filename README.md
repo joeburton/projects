@@ -3,7 +3,7 @@ Node, Express, Handlebars, Backbone and MongoDB CRUD Application
 
 Hosted on Digital Ocean with dokku
 
-[Project Directory](http://projects.joe-burton.com)
+[http://projects.joe-burton.com](http://projects.joe-burton.com)
 
 ```
 // Setup Dokku
