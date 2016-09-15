@@ -1,5 +1,5 @@
 #Projects Directory
-Backbone, Node and MongoDB CRUD Application
+Node, Express, Handlebars, Backbone and MongoDB CRUD Application
 
 Hosted on Digital Ocean with dokku
 
@@ -7,6 +7,7 @@ Hosted on Digital Ocean with dokku
 
 ```
 // Setup Dokku
+git init
 git remote add dokku dokku@projects.joe-burton.com:projects
 git add .
 git commit -m "firtst commit"
@@ -62,19 +63,21 @@ DEBUG=myapp npm start
 
 ```
 // Start database locally
+Step 1: cd to mongo
 cd /usr/local/mongodb
 
-start mongoDB
+Step 2: start mongoDB
 ./bin/mongod
 
-start mongo shell
+Step 3: start mongo shell
 ./bin/mongo
 
-switch database
+Step 4: select database
 use projectsdb
 
-return all collection/db records
-db.getCollection("projects").find()
+Start Projects App
+~/Sites/projects
+$ DEBUG=myapp npm start
 ```
 
 ```
