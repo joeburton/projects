@@ -4,7 +4,7 @@ var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 
 // API
-var production = true;
+var production = false;
 var url;
 var dbObj;
 var sess;
@@ -174,14 +174,14 @@ exports.populateDatabase = function (req, res) {
         project: "Helix Property",
         link: "http://www.helixproperty.co.uk/",
         company: "Millimetre Media",
-        skills: "JavaScript, CSS, PHP and Gulp",
+        skills: "JavaScript, Browserify, CSS, PHP, Gulp",
         description: "I was the sole Front-end Developer on this project. I used a Mobile First Responsive approach, using HTML5, CSS3 JavaScript/ jQuery and Browserify to manage my modules with Gulp to manage the front-end workflow."
     },
     {
         project: "m.lastminute.com",
         link: "http://m.lastminute.com",
         company: "lastminute.com",
-        skills: "Backbone, JavaScript, Jasmine, Require",
+        skills: "Backbone, JavaScript, Jasmine, Require, Grunt",
         description: "Whilst working for lastminute.com I worked on two specific projects. For the first project I created an HTML5, LESS/ CSS3 & JavaScript mobile-first responsive search form component that used the Bootstrap framework for the underlying grid and basic styling."
     },
     {
