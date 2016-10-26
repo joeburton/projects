@@ -35,6 +35,7 @@ app.use(session({
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(routes);
+
 app.get('/populate-database', api.populateDatabase); // populate database
 
 app.get('/source', api.findAll); // get all projects
