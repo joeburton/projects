@@ -35,7 +35,6 @@ app.use(session({
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(routes);
-
 app.get('/populate-database', api.populateDatabase); // populate database
 
 app.get('/source', api.findAll); // get all projects
@@ -59,6 +58,7 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
+  //console.log('ENV: ', app.get('env'));
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
