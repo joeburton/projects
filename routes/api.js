@@ -4,7 +4,7 @@ var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 
 // API
-var production = true;
+var production = false;
 var url;
 var dbObj;
 var sess;
@@ -15,7 +15,7 @@ if (production) {
     url = 'mongodb://projects:UGRJRzNidzVFK2JZbWdRYjdzZGpETFdCUURDeXRkeHYwUlRJUkNsdHJNcz0K@172.17.0.15:27017/projectsdb-production';
 } else {
     // local dev
-    url = 'mongodb://localhost:32769/projectsdb';
+    url = 'mongodb://localhost:27017/projectsdb';
 }
 
 // standards dev ip 27017
@@ -38,7 +38,7 @@ exports.login = function (req, res) {
     sess.user = req.body.user;
     sess.password = req.body.password;
 
-    if (sess.user === 'admin' && sess.password === 'projects') {
+    if (sess.user === 'projects' && sess.password === 'admin') {
         console.log('Login Successful');
         sess.authenticated = true;
         res.redirect('/admin');
